@@ -78,12 +78,11 @@ Create and view detailed reports with various parameters to analyze employee dat
   ```bash
     composer install
 
-   ```bash
     php artisan key:generate
-   cp .env.example .env
-   php artisan migrate
-   php artisan db:seed
-   php artisan serve
+    cp .env.example .env
+    php artisan migrate
+    php artisan db:seed
+    php artisan serve
 
 
  
