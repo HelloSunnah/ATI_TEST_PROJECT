@@ -74,8 +74,12 @@ Create and view detailed reports with various parameters to analyze employee dat
 
    ```bash
    git clone https://github.com/HelloSunnah/ATI_TEST_PROJECT.git
-   composer install
-   php artisan key:generate
+
+  ```bash
+    composer install
+
+   ```bash
+    php artisan key:generate
    cp .env.example .env
    php artisan migrate
    php artisan db:seed
