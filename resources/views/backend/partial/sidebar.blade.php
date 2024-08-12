@@ -3,7 +3,7 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link " href="\">
+      <a class="nav-link " href="{{route('dashboard')}}">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
@@ -38,8 +38,14 @@
           <i class="bi bi-grid"></i>
           <span>Message</span>
         </a>
+      </li>  
+       <li class="nav-item">
+        <a class="nav-link " href="{{route('report.summary')}}">
+          <i class="bi bi-grid"></i>
+          <span>Report Generate</span>
+        </a>
       </li>
-
+      
     </ul>
 
   </aside>

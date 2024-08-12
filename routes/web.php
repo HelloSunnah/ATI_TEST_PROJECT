@@ -1,12 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Backend\ReportController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\backend\SalaryController;
-use App\Http\Controllers\backend\MessageController;
-use App\Http\Controllers\backend\EmployeeController;
-use App\Http\Controllers\backend\DepartmentController;
-use App\Http\Controllers\backend\GenerateReportController;
+use App\Http\Controllers\Backend\SalaryController;
+use App\Http\Controllers\Backend\MessageController;
+use App\Http\Controllers\Backend\EmployeeController;
+use App\Http\Controllers\Backend\DepartmentController;
 
 Route::get('/', function () {
     return view('auth.login');
@@ -48,6 +48,10 @@ Route::middleware('auth')->group(function () {
     Route::post('/generate-slip/pdf', [SalaryController::class, 'generatePdf'])->name('salaries.generatePdf');
 
     Route::resource('departments', DepartmentController::class);
+
+
+    Route::get('report/summary', [ReportController::class, 'summaryReport'])->name('report.summary');
+
 
 });
 

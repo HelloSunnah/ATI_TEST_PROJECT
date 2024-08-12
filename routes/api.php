@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\Api\ApiController;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Artisan;
-use App\Http\Controllers\backend\DepartmentController;
+use App\Http\Controllers\Api\AuthController;
 
+Route::post('register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
+Route::middleware('auth:sanctum')->get('employees', [ApiController::class, 'show']);
 

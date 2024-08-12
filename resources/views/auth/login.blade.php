@@ -4,67 +4,82 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            color: #333;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            background: linear-gradient(to right, #e0eafc, #cfdef3);
+            font-family: 'Roboto', sans-serif;
         }
         .login-container {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 100%;
             max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            border: 1px solid #ddd;
         }
-        h2 {
+        .login-container h2 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #4a90e2;
             margin-bottom: 20px;
             text-align: center;
-            color: #333;
         }
-        label {
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
             display: block;
+            font-weight: 600;
+            color: #555;
             margin-bottom: 8px;
-            font-weight: bold;
         }
-        input[type="email"], input[type="password"] {
+        .form-group input {
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            padding: 12px;
             width: 100%;
-            padding: 10px;
-            margin-bottom: 16px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
             box-sizing: border-box;
+            transition: border-color 0.3s ease;
         }
-        input[type="checkbox"] {
-            margin-right: 8px;
+        .form-group input:focus {
+            border-color: #4a90e2;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
         }
-        button {
+        .form-group .error {
+            color: #e74c3c;
+            font-size: 14px;
+        }
+        .form-group .success {
+            color: #4caf50;
+            font-size: 14px;
+        }
+        .button {
             width: 100%;
-            padding: 10px;
-            background-color: #4CAF50;
+            background: #4a90e2;
             color: white;
             border: none;
-            border-radius: 4px;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 16px;
             cursor: pointer;
-            font-weight: bold;
+            transition: background 0.3s ease;
         }
-        button:hover {
-            background-color: #45a049;
+        .button:hover {
+            background: #357abd;
         }
         .links {
-            margin-top: 16px;
             text-align: center;
+            margin-top: 20px;
+            color: #666;
+            font-size: 14px;
         }
         .links a {
-            color: #007BFF;
+            color: #4a90e2;
             text-decoration: none;
+            font-weight: 600;
         }
         .links a:hover {
             text-decoration: underline;
@@ -74,9 +89,10 @@
 <body>
     <div class="login-container">
         <h2>Login</h2>
+        
         <!-- Session Status -->
         @if (session('status'))
-            <div style="color: green; margin-bottom: 16px;">
+            <div class="success mb-4">
                 {{ session('status') }}
             </div>
         @endif
@@ -85,34 +101,28 @@
             @csrf
 
             <!-- Email Address -->
-            <div>
+            <div class="form-group">
                 <label for="email">Email</label>
                 <input id="email" type="email" name="email" value="{{ old('email') }}" required autofocus autocomplete="username">
                 @error('email')
-                    <div style="color: red;">{{ $message }}</div>
+                    <div class="error">{{ $message }}</div>
                 @enderror
             </div>
 
             <!-- Password -->
-            <div>
+            <div class="form-group">
                 <label for="password">Password</label>
                 <input id="password" type="password" name="password" required autocomplete="current-password">
                 @error('password')
-                    <div style="color: red;">{{ $message }}</div>
+                    <div class="error">{{ $message }}</div>
                 @enderror
             </div>
 
-            <!-- Remember Me -->
-            <div>
-                <label for="remember_me">
-                    <input id="remember_me" type="checkbox" name="remember">
-                    Remember me
-                </label>
-            </div>
+         
 
             <!-- Submit Button -->
-            <div>
-                <button type="submit">Log in</button>
+            <div class="form-group">
+                <button type="submit" class="button">Log in</button>
             </div>
 
             <!-- Additional Links -->
