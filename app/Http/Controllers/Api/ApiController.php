@@ -3,24 +3,16 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\Employee;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
-
 
 class ApiController extends Controller
 {
-    public function show()
+       public function index()
     {
-        if (Auth::check()) {
-            $employee = Employee::all();
+        // Fetch all employees from the database
+        $employees = Employee::all();
 
-            if ($employee) {
-                return response()->json($employee);
-            } else {
-                return response()->json(['message' => 'Employee not found'], 404);
-            }
-        } else {
-            return response()->json(['message' => 'Unauthorized'], 401);
-        }
+        return response()->json($employees);
     }
 }
