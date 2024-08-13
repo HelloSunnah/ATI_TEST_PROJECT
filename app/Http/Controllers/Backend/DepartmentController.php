@@ -29,16 +29,15 @@ class DepartmentController extends Controller
         ]);
 
         Department::create($request->all());
+        sweetalert()->success('Store Successfully');
 
-        return redirect()->route('departments.index')
-                         ->with('success', 'Department created successfully.');
+        return redirect()->route('departments.index');
     }
 
     // Display the specified department
     public function show(Department $department)
     {
 
-        return view('departments.show', compact('department'));
     }
 
     // Show the form for editing the specified department
@@ -59,17 +58,17 @@ class DepartmentController extends Controller
         $department->name = $request->name;
         $department->save();
 
-        return redirect()->route('departments.index')
-                         ->with('success', 'Department updated successfully.');
+        sweetalert()->success('Updated Successfully');
+        return redirect()->route('departments.index');
     }
 
     // Remove the specified department from storage
-    public function destroy(Department $department)
+    public function delete($id)
     {
+        $department = Department::findOrFail($id);
         $department->delete();
-
-        return redirect()->route('departments.index')
-                         ->with('success', 'Department deleted successfully.');
+        sweetalert()->error('Oops Deleted!');
+        return back();
     }
     
     public function showDepartmentEmployees()  

@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Models\Message;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\backend\SMSController;
+use App\Http\Controllers\Backend\SMSController;
 
 class MessageController extends Controller
 {
@@ -32,7 +32,9 @@ class MessageController extends Controller
             $message->phone = $request->phone;
             $message->message = $request->message;
             $message->save();
-            return redirect()->back()->with('success', 'Message Send Successfully');
+            sweetalert('Sms Send Successfully');
+
+            return redirect()->back();
         } catch (Exception $e) {
             return back()->with('error', 'Something went to Wrong');
         }

@@ -1,12 +1,12 @@
 <?php
 
 namespace App\Http\Controllers\Backend;
-
 use App\Models\Employee;
 use App\Models\Department;
 use App\Traits\Image;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+
 
 class EmployeeController extends Controller
 {
@@ -57,8 +57,10 @@ class EmployeeController extends Controller
         }
 
         $employee->save();
+        sweetalert('Employee Creaated Successfully');
 
-        return redirect()->route('employee.index')->with('success', 'Employee created successfully.');
+
+        return redirect()->route('employee.index');
     }
 
     // Show the form for editing the specified employee
@@ -104,8 +106,10 @@ class EmployeeController extends Controller
         }
 
         $employee->save();
+        sweetalert('Employee updated Successfully');
 
-        return redirect()->route('employee.index')->with('success', 'Employee updated successfully.');
+
+        return redirect()->route('employee.index');
     }
 
     // Remove the specified employee from the database
@@ -114,7 +118,9 @@ class EmployeeController extends Controller
         $employee = Employee::findOrFail($id);
         $this->deleteOne('uploads/employee/', $employee->image);
         $employee->delete();
+        sweetalert('Employee Deleted');
 
-        return back()->with('success', 'Employee deleted successfully.');
+
+        return back();
     }
 }

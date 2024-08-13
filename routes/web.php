@@ -29,7 +29,8 @@ Route::middleware('auth')->group(function () {
       Route::get('/edit/{id}', [EmployeeController::class, 'edit'])->name('edit');
       Route::post('/update/{id}', [EmployeeController::class, 'update'])->name('update');
       Route::get('/delete/{id}', [EmployeeController::class, 'delete'])->name('delete');
-   });
+    });
+
    //messages
    Route::prefix('message')->name('message.')->group(function (){
       Route::get('/', [MessageController::class, 'index'])->name('index');

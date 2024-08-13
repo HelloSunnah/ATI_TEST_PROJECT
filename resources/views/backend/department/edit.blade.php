@@ -19,22 +19,28 @@
                 <div class="card-body">
                     <h5 class="card-title">General Form Elements</h5>
 
-                    <!-- General Form Elements -->
-                    <form action="{{route('departments.update',$department->id)}}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('departments.update', $department->id) }}" method="post" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
+
                         <div class="row mb-3">
                             <label for="inputText" class="col-sm-2 col-form-label">Name</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="name" value="{{$department->name}}">
+                                <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name', $department->name) }}">
+                                @error('name')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
                         </div>
+
                         <div class="row mb-3">
                             <div class="col-sm-10">
                                 <button type="submit" class="btn btn-primary">Submit Form</button>
                             </div>
                         </div>
-                    </form><!-- End General Form Elements -->
+                    </form>
                 </div>
             </div>
 
