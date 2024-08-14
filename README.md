@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project is a comprehensive application designed to manage employee information with various functionalities, including AJAX-based department-wise searching, CRUD operations using Vue.js, and advanced reporting features.
+This project is a comprehensive application designed to manage employee information with various functionalities, including AJAX-based department-wise searching, CRUD operations, and advanced reporting features.
 
 ## Features
 - **CRUD Operations**: Create, Read, Update, and Delete employee records with laravel and an admin template.
