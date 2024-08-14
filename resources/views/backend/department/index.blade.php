@@ -1,53 +1,60 @@
 @extends('backend.master')
 @section('content')
+
 <div class="pagetitle">
-      <h1>Data Tables</h1>
-      <nav>
+    <h1>Departments</h1>
+    <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item">Department</li>
-          <li class="breadcrumb-item active">List</li>
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item active">Departments</li>
         </ol>
-      </nav>
-    </div><!-- End Page Title -->
+    </nav>
+</div>
 
-    <section class="section">
-      <div class="row">
+<section class="section">
+    <div class="row">
         <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Departments List</h5>
+                    <a href="{{ route('departments.create') }}" class="btn btn-primary mb-3">Add New Department</a>
 
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Department</h5>
-              <a href="{{route('departments.create')}}" class="btn btn-primary" >Create</a>
+                    @if (session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                    @endif
 
-              <!-- Table with stripped rows -->
-              <table class="table datatable">
-                <thead>
-                  <tr>
-                    <th>
-                      <b>N</b>ame
-                    </th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  @foreach ($departments as $item)
-                    <tr>
-                      <td>{{$item->name}}</td>
-                      <td>
-                        <a href="{{route('departments.edit',$item->id)}}" class="btn btn-success">Edit</a>
-                        <a href="{{route('departments.destroy',$item->id)}}" class="btn btn-danger">Delete</a>
-                      </td>
-                     </tr>
-                  @endforeach
-                </tbody>
-              </table>
-              <!-- End Table with stripped rows -->
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($departments as $department)
+                            <tr>
+                                <th scope="row">{{ $loop->iteration }}</th>
+                                <td>{{ $department->name }}</td>
+                                <td>
+                                    <a href="{{ route('departments.edit', $department->id) }}" class="btn btn-warning btn-sm">Edit</a>
 
+                                    <form action="{{ route('departments.destroy', $department->id) }}" method="post" class="d-inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+
+                </div>
             </div>
-          </div>
-
         </div>
-      </div>
-    </section>
+    </div>
+</section>
 @endsection

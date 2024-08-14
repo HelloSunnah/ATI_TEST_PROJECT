@@ -21,15 +21,6 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-   //employees
-   Route::prefix('employee')->name('employee.')->group(function (){
-      Route::get('/', [EmployeeController::class, 'index'])->name('index');
-      Route::get('/create', [EmployeeController::class, 'create'])->name('create');
-      Route::post('/store', [EmployeeController::class, 'store'])->name('store');
-      Route::get('/edit/{id}', [EmployeeController::class, 'edit'])->name('edit');
-      Route::post('/update/{id}', [EmployeeController::class, 'update'])->name('update');
-      Route::get('/delete/{id}', [EmployeeController::class, 'delete'])->name('delete');
-    });
 
    //messages
    Route::prefix('message')->name('message.')->group(function (){
@@ -38,8 +29,17 @@ Route::middleware('auth')->group(function () {
       Route::get('/delete/{id}', [MessageController::class, 'delete'])->name('delete');
    });
 
+     //employees
+     Route::prefix('employee')->name('employee.')->group(function (){
+        Route::get('/', [EmployeeController::class, 'index'])->name('index');
+        Route::get('/create', [EmployeeController::class, 'create'])->name('create');
+        Route::post('/store', [EmployeeController::class, 'store'])->name('store');
+        Route::get('/edit/{id}', [EmployeeController::class, 'edit'])->name('edit');
+        Route::post('/update/{id}', [EmployeeController::class, 'update'])->name('update');
+        Route::delete('/delete/{id}', [EmployeeController::class, 'delete'])->name('delete');
+     });
 
-   
+
     Route::get('/department-employees', [DepartmentController::class, 'showDepartmentEmployees'])->name('show.department.employees');
     Route::get('/get-department-employees', [DepartmentController::class, 'getDepartmentEmployees'])->name('get.department.employees');
 
@@ -48,8 +48,15 @@ Route::middleware('auth')->group(function () {
     Route::post('/generate-slip', [SalaryController::class, 'generateSlip'])->name('salaries.generateSlip');
     Route::post('/generate-slip/pdf', [SalaryController::class, 'generatePdf'])->name('salaries.generatePdf');
 
-    Route::resource('departments', DepartmentController::class);
-
+    // Department Crud
+    Route::prefix('departments')->name('departments.')->group(function (){
+    Route::get('/', [DepartmentController::class, 'index'])->name('index');
+    Route::get('/create', [DepartmentController::class, 'create'])->name('create');
+    Route::post('store', [DepartmentController::class, 'store'])->name('store');
+    Route::get('/{id}/edit', [DepartmentController::class, 'edit'])->name('edit');
+    Route::put('/update/{id}', [DepartmentController::class, 'update'])->name('update');
+    Route::delete('/delete/{id}', [DepartmentController::class, 'destroy'])->name('destroy');
+    });
 
     Route::get('report/summary', [ReportController::class, 'summaryReport'])->name('report.summary');
 

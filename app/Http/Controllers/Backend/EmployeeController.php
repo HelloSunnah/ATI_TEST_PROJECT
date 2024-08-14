@@ -119,8 +119,6 @@ class EmployeeController extends Controller
         $this->deleteOne('uploads/employee/', $employee->image);
         $employee->delete();
         sweetalert('Employee Deleted');
-
-
         return back();
     }
 }

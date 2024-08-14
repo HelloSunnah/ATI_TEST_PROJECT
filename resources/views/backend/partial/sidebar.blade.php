@@ -33,18 +33,19 @@
           <span>Salary Sheet</span>
         </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link " href="{{route('message.index')}}">
-          <i class="bi bi-grid"></i>
-          <span>Message</span>
-        </a>
-      </li>  
+     
        <li class="nav-item">
         <a class="nav-link " href="{{route('report.summary')}}">
           <i class="bi bi-grid"></i>
           <span>Report Generate</span>
         </a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link " href="{{route('message.index')}}">
+          <i class="bi bi-grid"></i>
+          <span>Message System</span>
+        </a>
+      </li>  
       
     </ul>
 
