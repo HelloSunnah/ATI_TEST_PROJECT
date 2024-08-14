@@ -29,7 +29,7 @@ This project is a comprehensive application designed to manage employee informat
 
 - PHP >= 8.x
 - Composer
-- Node.js and npm
+- Laravel 11
 - MySQL
 ## Usage
 
