@@ -39,12 +39,12 @@
                                 <th scope="row">{{ $loop->iteration }}</th>
                                 <td>{{ $department->name }}</td>
                                 <td>
-                                    <a href="{{ route('departments.edit', $department->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                    <a href="{{ route('departments.edit', $department->id) }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>
 
                                     <form action="{{ route('departments.destroy', $department->id) }}" method="post" class="d-inline">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</button>
+                                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')"><i class="fa-solid fa-trash"></i></button>
                                     </form>
                                 </td>
                             </tr>

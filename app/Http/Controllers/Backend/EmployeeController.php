@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Backend;
+
 use App\Models\Employee;
 use App\Models\Department;
 use App\Traits\Image;
@@ -63,6 +64,7 @@ class EmployeeController extends Controller
         return redirect()->route('employee.index');
     }
 
+
     // Show the form for editing the specified employee
     public function edit($id)
     {
@@ -121,4 +123,11 @@ class EmployeeController extends Controller
         sweetalert('Employee Deleted');
         return back();
     }
+    public function show($id)
+    {
+        $employee = Employee::findOrFail($id);
+        return view('backend.employee.show', compact('employee'));
+    }
+
+  
 }
