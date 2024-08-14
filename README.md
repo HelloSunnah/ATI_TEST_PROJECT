@@ -1,4 +1,4 @@
-# Project Name
+# ATI LIMITED TEST
 
 ## Overview
 
@@ -65,7 +65,12 @@ Create and view detailed reports with various parameters to analyze employee dat
 1. Navigate to the reports section from the admin panel.
 2. Choose the parameters for the report, such as date range and department.
 3. Click "Generate Report" to view the results on the screen.
-4. Optionally, export the report as a PDF by clicking the "Export to PDF" button.
+4. Optionally, export the report as a PDF by clicking the "Export to PDF" button.### Generate Reports
+
+### API Information
+1. Register API
+2. Login API
+3. EMployee List API with middleware using Sanctum For Authentication
 
 
 ### Installation
