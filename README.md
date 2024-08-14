@@ -19,7 +19,7 @@ This project is a comprehensive application designed to manage employee informat
 - **Backend**: Laravel
 - **Frontend**: HTML,CSS,Bootstrap
 - **Database**: MySQL
-- **APIs**: Various for functionalities including SMS
+- **APIs**:Api Integration using Sanctum
 - **Reporting**: PDF generation libraries
 - **Authentication**: Laravel built-in Third party package
 
