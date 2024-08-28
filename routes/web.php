@@ -1,8 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Backend\ReportController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Backend\ReportController;
 use App\Http\Controllers\Backend\SalaryController;
 use App\Http\Controllers\Backend\MessageController;
 use App\Http\Controllers\Backend\EmployeeController;
@@ -22,15 +23,15 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
 
-   //messages
-   Route::prefix('message')->name('message.')->group(function (){
-      Route::get('/', [MessageController::class, 'index'])->name('index');
-      Route::post('/store', [MessageController::class, 'store'])->name('store');
-      Route::get('/delete/{id}', [MessageController::class, 'delete'])->name('delete');
-   });
+    //messages
+    Route::prefix('message')->name('message.')->group(function () {
+        Route::get('/', [MessageController::class, 'index'])->name('index');
+        Route::post('/store', [MessageController::class, 'store'])->name('store');
+        Route::get('/delete/{id}', [MessageController::class, 'delete'])->name('delete');
+    });
 
-     //employees
-     Route::prefix('employee')->name('employee.')->group(function (){
+    //employees
+    Route::prefix('employee')->name('employee.')->group(function () {
         Route::get('/', [EmployeeController::class, 'index'])->name('index');
         Route::get('/create', [EmployeeController::class, 'create'])->name('create');
         Route::post('/store', [EmployeeController::class, 'store'])->name('store');
@@ -38,7 +39,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/edit/{id}', [EmployeeController::class, 'edit'])->name('edit');
         Route::post('/update/{id}', [EmployeeController::class, 'update'])->name('update');
         Route::delete('/delete/{id}', [EmployeeController::class, 'delete'])->name('delete');
-     });
+    });
 
 
     Route::get('/department-employees', [DepartmentController::class, 'showDepartmentEmployees'])->name('show.department.employees');
@@ -50,18 +51,25 @@ Route::middleware('auth')->group(function () {
     Route::post('/generate-slip/pdf', [SalaryController::class, 'generatePdf'])->name('salaries.generatePdf');
 
     // Department Crud
-    Route::prefix('departments')->name('departments.')->group(function (){
-    Route::get('/', [DepartmentController::class, 'index'])->name('index');
-    Route::get('/create', [DepartmentController::class, 'create'])->name('create');
-    Route::post('store', [DepartmentController::class, 'store'])->name('store');
-    Route::get('/{id}/edit', [DepartmentController::class, 'edit'])->name('edit');
-    Route::put('/update/{id}', [DepartmentController::class, 'update'])->name('update');
-    Route::delete('/delete/{id}', [DepartmentController::class, 'destroy'])->name('destroy');
+    Route::prefix('departments')->name('departments.')->group(function () {
+        Route::get('/', [DepartmentController::class, 'index'])->name('index');
+        Route::get('/create', [DepartmentController::class, 'create'])->name('create');
+        Route::post('store', [DepartmentController::class, 'store'])->name('store');
+        Route::get('/{id}/edit', [DepartmentController::class, 'edit'])->name('edit');
+        Route::put('/update/{id}', [DepartmentController::class, 'update'])->name('update');
+        Route::delete('/delete/{id}', [DepartmentController::class, 'destroy'])->name('destroy');
     });
 
     Route::get('report/summary', [ReportController::class, 'summaryReport'])->name('report.summary');
 
 
+
+
+    Route::get('payment', [PaymentController::class, 'showPaymentForm'])->name('payment.form');
+    Route::post('payment/initiate', [PaymentController::class, 'initiatePayment'])->name('payment.initiate');
+    Route::get('payment/success', [PaymentController::class, 'paymentSuccess'])->name('payment.success');
+    Route::get('payment/fail', [PaymentController::class, 'paymentFail'])->name('payment.fail');
+    Route::get('payment/cancel', [PaymentController::class, 'paymentCancel'])->name('payment.cancel');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
